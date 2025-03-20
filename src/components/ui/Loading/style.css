@@ -1,0 +1,26 @@
+/* Spinner customizado */
+.spinner {
+	border: 4px solid rgba(255, 255, 255, 0.2);
+	border-top: 4px solid #feda4a;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	animation: spin 1s linear infinite;
+	margin: 0 auto;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Texto do loading com tipografia temática */
+.loading-text {
+	font-family:
+		"Star Jedi", sans-serif; /* Certifique-se de incluir a fonte no projeto */
+	color: #feda4a;
+}

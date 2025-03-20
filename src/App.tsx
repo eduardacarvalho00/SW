@@ -1,5 +1,5 @@
-import "tailwindcss";
 import { MainRoutes } from "./routes";
+import "./globals.css";
 
 function App() {
 	return <MainRoutes />;
