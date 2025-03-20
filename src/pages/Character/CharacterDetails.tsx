@@ -1,8 +1,6 @@
 import { ArrowLeft, Globe } from "lucide-react";
 import { Container } from "@components/Container";
-import { Link, useParams } from "react-router-dom";
-import { useGetCharacter } from "@queries/character";
-import { useGetPlanet } from "@queries/planet";
+import { Link } from "react-router-dom";
 import { Button } from "@components/ui/Button";
 import { FavoriteButton } from "@components/FavoriteButton";
 import {
@@ -15,20 +13,20 @@ import {
 	CardTitle,
 } from "@components/ui/Card";
 import { Loading } from "@components/ui/Loading";
+import { useCharacter } from "./useCharacter";
 
 export const CharacterDetails = () => {
-	const { characterId } = useParams();
-	const { data: character, isLoading: isLoadingCharacter } = useGetCharacter(
-		String(characterId)
-	);
-	const splitHomeworld = character && character.homeworld.split("/");
-	const homeworldId =
-		splitHomeworld && splitHomeworld[splitHomeworld.length - 2];
-	const { data: homeworld, isLoading: isLoadingHomeWorld } = useGetPlanet(
-		String(homeworldId)
-	);
+	const {
+		character,
+		isLoadingDetailsCharacter,
+		filmsData,
+		isLoadingFilms,
+		homeworld,
+		isLoadingHomeWorld,
+		homeworldId,
+	} = useCharacter();
 
-	if (isLoadingCharacter) {
+	if (isLoadingDetailsCharacter) {
 		return (
 			<div className="h-screen flex items-center justify-center">
 				<Loading />
@@ -113,14 +111,16 @@ export const CharacterDetails = () => {
 							<div>
 								<h3 className="font-semibold">Films</h3>
 								<div className="flex flex-wrap gap-2 mt-2">
-									{character.films.map((film) => (
-										<span
-											key={film}
-											className="rounded-full bg-secondary px-3 py-1 text-xs"
-										>
-											{film}
-										</span>
-									))}
+									{isLoadingFilms && <Loading />}
+									{filmsData &&
+										filmsData.map((film) => (
+											<span
+												key={film.title}
+												className="rounded-full bg-gray-500 px-3 py-1 text-xs"
+											>
+												{film.title}
+											</span>
+										))}
 								</div>
 							</div>
 						</CardContent>

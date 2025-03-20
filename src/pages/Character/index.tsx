@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { CharacterResponse } from "@/interface/character";
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { Container } from "@components/Container";
 import { FavoriteButton } from "@components/FavoriteButton";
 import { Pagination } from "@components/Pagination";
@@ -13,60 +12,24 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@components/ui/Select";
-import { usePagination } from "@hooks/usePagination";
-import { useGetAllCharacters } from "@queries/character";
-import { useEffect, useState } from "react";
+import { useCharacter } from "./useCharacter";
 
 export const Character = () => {
-	const [searchQuery, setSearchQuery] = useState<string>("");
-
-	const [genderFilter, setGenderFilter] = useState<string>("all");
 	const {
-		handleNextPage,
-		handlePrevPage,
-		handleTotalItems,
-		handleGoToPage,
+		searchQuery,
+		setSearchQuery,
+		genderFilter,
+		setGenderFilter,
+		allGenders,
+		isLoadingCharacter,
+		filteredCharacters,
 		page,
 		pageLength,
 		totalItems,
-	} = usePagination();
-
-	const { data: dataCharacter, isLoading: isLoadingCharacter } =
-		useGetAllCharacters({ page: String(page) });
-	const [filteredCharacters, setFilteredCharacters] = useState<
-		CharacterResponse[]
-	>(dataCharacter ? dataCharacter?.results : []);
-
-	const allGenders = Array.from(
-		new Set(dataCharacter?.results.map((char) => char.gender))
-	);
-
-	useEffect(() => {
-		if (dataCharacter) {
-			handleTotalItems(dataCharacter.count);
-		}
-		if (dataCharacter?.results && dataCharacter?.results.length === 0) {
-			handlePrevPage();
-		}
-	}, [dataCharacter]);
-
-	useEffect(() => {
-		if (dataCharacter) {
-			let result = dataCharacter.results;
-
-			if (searchQuery) {
-				result = result.filter((char) =>
-					char.name.toLowerCase().includes(searchQuery.toLowerCase())
-				);
-			}
-
-			if (genderFilter !== "all") {
-				result = result.filter((char) => char.gender === genderFilter);
-			}
-
-			setFilteredCharacters(result);
-		}
-	}, [searchQuery, genderFilter, dataCharacter]);
+		handleGoToPage,
+		handleNextPage,
+		handlePrevPage,
+	} = useCharacter();
 
 	return (
 		<Container>

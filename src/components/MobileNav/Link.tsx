@@ -15,7 +15,9 @@ export const Link = ({ Icon, href, title }: LinkProps) => {
 			to={href}
 			className={twMerge(
 				"flex flex-col items-center justify-center",
-				pathname.startsWith(href) ? "text-white" : "text-[#94a3b8]"
+				href === pathname || pathname.startsWith(href + "/")
+					? "text-white"
+					: "text-[#94a3b8]"
 			)}
 		>
 			{Icon && <Icon className="h-4 w-4" />}

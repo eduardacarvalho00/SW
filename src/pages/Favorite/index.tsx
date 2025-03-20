@@ -3,16 +3,20 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardFooter, CardLink } from "@/components/ui/Card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { useFavorite } from "@hooks/useFavorite";
 import { Container } from "@components/Container";
 import { Link } from "react-router-dom";
-
-type TypeTabName = "characters" | "planets";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@components/ui/Select";
 
 export default function Favorite() {
-	const [activeTab, setActiveTab] = useState<TypeTabName>("characters");
+	const [activeTab, setActiveTab] = useState("characters");
 	const { getFavorites } = useFavorite();
 
 	const isCaracterTab = activeTab === "characters";
@@ -27,30 +31,32 @@ export default function Favorite() {
 					</p>
 				</div>
 
-				<Tabs defaultValue="characters">
-					<TabsList className="grid w-full grid-cols-2">
-						<TabsTrigger
-							className={`bg-[#010101] cursor-pointer`}
-							value="characters"
-							onClick={() => setActiveTab("characters")}
-						>
+				<Select
+					value={activeTab}
+					onValueChange={setActiveTab}
+					defaultValue={activeTab}
+				>
+					<SelectTrigger>
+						<SelectValue placeholder="Filter by class" />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem key="characters" value="characters">
 							Characters
-						</TabsTrigger>
-						<TabsTrigger
-							className={`bg-[#010101] cursor-pointer`}
-							value="planets"
-							onClick={() => setActiveTab("planets")}
-						>
+						</SelectItem>
+						<SelectItem key="planets" value="planets">
 							Planets
-						</TabsTrigger>
-					</TabsList>
+						</SelectItem>
+					</SelectContent>
+				</Select>
 
-					{isCaracterTab && (
-						<TabsContent value="characters" className="mt-6">
-							{getFavorites("characters") &&
-							getFavorites("characters").length > 0 ? (
-								<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-									{getFavorites("characters").map((character) => {
+				{isCaracterTab && (
+					<div>
+						{getFavorites("characters") &&
+						getFavorites("characters").length > 0 ? (
+							<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+								{getFavorites("characters")
+									.reverse()
+									.map((character) => {
 										const url = character.url;
 										const idCharacter = url?.match(/\/(\d+)\/$/);
 
@@ -88,27 +94,29 @@ export default function Favorite() {
 											</Card>
 										);
 									})}
-								</div>
-							) : (
-								<div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8">
-									<h2 className="text-xl font-semibold">
-										No favorite characters
-									</h2>
-									<p className="text-muted-foreground">
-										You haven't added any characters to your favorites yet.
-									</p>
-									<Button asChild className="mt-4">
-										<Link to="/characters">Browse Characters</Link>
-									</Button>
-								</div>
-							)}
-						</TabsContent>
-					)}
-					{isPlanetTab && (
-						<TabsContent value="planets" className="mt-6">
-							{getFavorites("planets") && getFavorites("planets").length > 0 ? (
-								<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-									{getFavorites("planets").map((planet) => {
+							</div>
+						) : (
+							<div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8">
+								<h2 className="text-xl font-semibold">
+									No favorite characters
+								</h2>
+								<p className="text-muted-foreground">
+									You haven't added any characters to your favorites yet.
+								</p>
+								<Button asChild className="mt-4">
+									<Link to="/characters">Browse Characters</Link>
+								</Button>
+							</div>
+						)}
+					</div>
+				)}
+				{isPlanetTab && (
+					<div>
+						{getFavorites("planets") && getFavorites("planets").length > 0 ? (
+							<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+								{getFavorites("planets")
+									.reverse()
+									.map((planet) => {
 										const url = planet.url;
 										const idplanet = url?.match(/\/(\d+)\/$/);
 
@@ -136,21 +144,20 @@ export default function Favorite() {
 											</Card>
 										);
 									})}
-								</div>
-							) : (
-								<div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8">
-									<h2 className="text-xl font-semibold">No favorite planets</h2>
-									<p className="text-muted-foreground">
-										You haven't added any planets to your favorites yet.
-									</p>
-									<Button asChild className="mt-4">
-										<Link to="/planets">Browse Planets</Link>
-									</Button>
-								</div>
-							)}
-						</TabsContent>
-					)}
-				</Tabs>
+							</div>
+						) : (
+							<div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8">
+								<h2 className="text-xl font-semibold">No favorite planets</h2>
+								<p className="text-muted-foreground">
+									You haven't added any planets to your favorites yet.
+								</p>
+								<Button asChild className="mt-4">
+									<Link to="/planets">Browse Planets</Link>
+								</Button>
+							</div>
+						)}
+					</div>
+				)}
 			</div>
 			<div className="min-h-32 flex md:none" />
 		</Container>

@@ -13,8 +13,8 @@ import {
 } from "@components/ui/Card";
 import { Loading } from "@components/ui/Loading";
 import { useQuery } from "@tanstack/react-query";
-import { character } from "@api/starwars";
-import { CHARACTERS } from "@constants/entitiesKey";
+import { character, film } from "@api/starwars";
+import { CHARACTERS, FILMS } from "@constants/entitiesKey";
 
 export const PlanetDetails = () => {
 	const { planetId } = useParams();
@@ -38,6 +38,24 @@ export const PlanetDetails = () => {
 			}
 		},
 		enabled: residentsIds !== undefined && residentsIds.length > 0,
+	});
+
+	const filmsIds = planet?.films.map((url) => {
+		const match = url.match(/(\d+)\/$/);
+		return match ? parseInt(match[1]) : null;
+	});
+
+	const { data: filmsData, isLoading: isLoadingFilms } = useQuery({
+		queryKey: [FILMS, { filmsIds }],
+		queryFn: async () => {
+			if (filmsIds) {
+				const results = await Promise.all(
+					filmsIds.map((id) => film(String(id)))
+				);
+				return results;
+			}
+		},
+		enabled: filmsIds !== undefined && filmsIds.length > 0,
 	});
 
 	if (isLoadingPlanet) {
@@ -129,14 +147,16 @@ export const PlanetDetails = () => {
 							<div>
 								<h3 className="font-semibold">Films</h3>
 								<div className="flex flex-wrap gap-2 mt-2">
-									{planet.films.map((film) => (
-										<span
-											key={film}
-											className="rounded-full bg-secondary px-3 py-1 text-xs"
-										>
-											{film}
-										</span>
-									))}
+									{isLoadingFilms && <Loading />}
+									{filmsData &&
+										filmsData.map((film) => (
+											<span
+												key={film.title}
+												className="rounded-full bg-gray-500 px-3 py-1 text-xs"
+											>
+												{film.title}
+											</span>
+										))}
 								</div>
 							</div>
 						</CardContent>
