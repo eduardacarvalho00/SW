@@ -28,16 +28,16 @@ export default function Favorite() {
 				</div>
 
 				<Tabs defaultValue="characters">
-					<TabsList className="grid w-full grid-cols-2 bg-[#27272a]">
+					<TabsList className="grid w-full grid-cols-2">
 						<TabsTrigger
-							className={`bg-${isCaracterTab ? "[#010101]" : "[#27272a]"} cursor-pointer`}
+							className={`bg-[#010101] cursor-pointer`}
 							value="characters"
 							onClick={() => setActiveTab("characters")}
 						>
 							Characters
 						</TabsTrigger>
 						<TabsTrigger
-							className={`bg-${isPlanetTab ? "[#010101]" : "[#27272a]"}  cursor-pointer`}
+							className={`bg-[#010101] cursor-pointer`}
 							value="planets"
 							onClick={() => setActiveTab("planets")}
 						>

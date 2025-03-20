@@ -14,6 +14,7 @@ export const Link = ({ Icon, href, title, ...rest }: LinkProps) => {
 	return (
 		<RouterLink
 			to={href}
+			role="button"
 			className={twMerge(
 				"text-sm font-medium transition-colors hover:text-white",
 				href === pathname || pathname.startsWith(href + "/")

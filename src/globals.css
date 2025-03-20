@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 @media (prefers-color-scheme: dark) {
 	:root {
