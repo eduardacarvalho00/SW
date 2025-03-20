@@ -27,7 +27,7 @@ export const Home = () => {
 		</div>
 	) : (
 		<Container>
-			<div className="space-y-6 h-full justify-center flex flex-col">
+			<div className="space-y-6 h-vh md:h-full justify-center flex flex-col">
 				<p className="font-medium text-xl">
 					Welcome to the Star Wars Explorer. Discover characters and planets
 					from the Star Wars universe.
@@ -106,6 +106,7 @@ export const Home = () => {
 						</p>
 					</div>
 				</div>
+				<div className="min-h-11 flex md:none" />
 			</div>
 		</Container>
 	);

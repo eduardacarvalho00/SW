@@ -68,7 +68,7 @@ export const PlanetDetails = () => {
 
 	return (
 		<Container>
-			<div className="space-y-6">
+			<div className="space-y-6 h-vh md:h-full">
 				<div className="flex items-center gap-4">
 					<Link to="/planets">
 						<Button variant="outline" size="icon">
@@ -80,8 +80,8 @@ export const PlanetDetails = () => {
 					<FavoriteButton type="planets" item={planet} />
 				</div>
 
-				<div className="space-x-6 flex">
-					<Card className="w-[50%]">
+				<div className="space-x-6 flex flex-col md:flex-row gap-1.5">
+					<Card className="w-full md:w-[50%]">
 						<CardHeader>
 							<CardTitle>Planet Details</CardTitle>
 							<CardDescription>Information about {planet.name}</CardDescription>
@@ -142,7 +142,7 @@ export const PlanetDetails = () => {
 						</CardContent>
 					</Card>
 					{!residentsData && !isLoadingResidents && (
-						<Card className="w-[50%]">
+						<Card className="w-full md:w-[50%]">
 							<CardHeader>
 								<CardTitle className="flex items-center gap-2">
 									<Users className="h-5 w-5" />
@@ -157,7 +157,7 @@ export const PlanetDetails = () => {
 					)}
 
 					{(isLoadingResidents || residentsData) && (
-						<Card className="w-[50%]">
+						<Card className="w-full md:w-[50%]">
 							<CardHeader>
 								<CardTitle className="flex items-center gap-2">
 									<Users className="h-5 w-5" />
@@ -196,6 +196,7 @@ export const PlanetDetails = () => {
 					)}
 				</div>
 			</div>
+			<div className="min-h-32 flex md:none" />
 		</Container>
 	);
 };

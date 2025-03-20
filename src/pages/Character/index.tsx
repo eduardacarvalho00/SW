@@ -70,7 +70,7 @@ export const Character = () => {
 
 	return (
 		<Container>
-			<div className="space-y-6 h-full z-0">
+			<div className="space-y-6 h-vh md:h-full z-0">
 				<div>
 					<h1 className="text-3xl font-bold tracking-tight">Characters</h1>
 					<p className="text-[#94a3b8]">
@@ -164,6 +164,7 @@ export const Character = () => {
 					/>
 				)}
 			</div>
+			<div className="min-h-32 flex md:none" />
 		</Container>
 	);
 };

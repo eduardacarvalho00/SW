@@ -10,7 +10,7 @@ export const Container = ({ children }: ContainerProps) => {
 	return (
 		<main className="w-full h-screen">
 			<Header />
-			<section className="py-4 px-8 w-full h-[90%] mb-4">{children}</section>
+			<section className="py-4 px-8 w-full h-[90%]">{children}</section>
 			<MobileNav />
 		</main>
 	);

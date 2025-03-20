@@ -19,7 +19,7 @@ export default function Favorite() {
 	const isPlanetTab = activeTab === "planets";
 	return (
 		<Container>
-			<div className="space-y-6">
+			<div className="space-y-6 h-vh md:h-full">
 				<div>
 					<h1 className="text-3xl font-bold tracking-tight ">Favorites</h1>
 					<p className="text-muted-foreground">
@@ -152,6 +152,7 @@ export default function Favorite() {
 					)}
 				</Tabs>
 			</div>
+			<div className="min-h-32 flex md:none" />
 		</Container>
 	);
 }

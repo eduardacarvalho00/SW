@@ -56,7 +56,7 @@ export const CharacterDetails = () => {
 
 	return (
 		<Container>
-			<div className="space-y-6">
+			<div className="space-y-6 h-vh md:h-full">
 				<div className="flex items-center gap-4">
 					<Link to="/characters">
 						<Button variant="outline" size="icon">
@@ -70,8 +70,8 @@ export const CharacterDetails = () => {
 					<FavoriteButton type="characters" item={character} />
 				</div>
 
-				<div className="space-x-6 flex">
-					<Card className="w-[50%]">
+				<div className="space-x-6 flex flex-col md:flex-row gap-1.5">
+					<Card className="w-full md:w-[50%]">
 						<CardHeader>
 							<CardTitle>Character Details</CardTitle>
 							<CardDescription>
@@ -127,7 +127,7 @@ export const CharacterDetails = () => {
 					</Card>
 
 					{(isLoadingHomeWorld || homeworld) && (
-						<Card className="w-[50%] flex flex-col justify-between">
+						<Card className="w-full md:w-[50%] flex flex-col justify-between">
 							<div>
 								<CardHeader>
 									<CardTitle className="flex items-center gap-2">
@@ -160,7 +160,7 @@ export const CharacterDetails = () => {
 														{homeworld.population}
 													</p>
 												</div>
-											</div>{" "}
+											</div>
 										</CardContent>
 									)
 								)}
@@ -172,6 +172,7 @@ export const CharacterDetails = () => {
 					)}
 				</div>
 			</div>
+			<div className="min-h-32 flex md:none" />
 		</Container>
 	);
 };
