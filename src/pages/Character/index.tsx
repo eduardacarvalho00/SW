@@ -72,7 +72,7 @@ export const Character = () => {
 						<Loading />
 					</div>
 				) : filteredCharacters && filteredCharacters.length > 0 ? (
-					<div className="scrollbar overflow-y-auto h-[70%] max-h-[70%]">
+					<div className="scrollbar overflow-y-auto h-[65%] max-h-[65%]">
 						<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 							{filteredCharacters.map((character) => {
 								const url = character.url;

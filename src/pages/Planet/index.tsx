@@ -1,4 +1,3 @@
-import { PlanetResponse } from "@/interface/planet";
 import { Container } from "@components/Container";
 import { FavoriteButton } from "@components/FavoriteButton";
 import { Pagination } from "@components/Pagination";
@@ -12,61 +11,24 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@components/ui/Select";
-import { usePagination } from "@hooks/usePagination";
-import { useGetAllPlanets } from "@queries/planet";
-import { useEffect, useState } from "react";
+import { usePlanet } from "./usePlanet";
 
 export const Planet = () => {
-	const [searchQuery, setSearchQuery] = useState<string>("");
-
-	const [climateFilter, setClimateFilter] = useState<string>("all");
 	const {
-		handleNextPage,
-		handlePrevPage,
-		handleTotalItems,
-		handleGoToPage,
+		allClimates,
+		searchQuery,
+		setSearchQuery,
+		climateFilter,
+		isLoadingCharacter,
+		filteredPlanets,
 		page,
 		pageLength,
 		totalItems,
-	} = usePagination();
-
-	const { data: dataPlanets, isLoading: isLoadingCharacter } = useGetAllPlanets(
-		{ page: String(page) }
-	);
-	const [filteredPlanets, setFilteredPlanets] = useState<PlanetResponse[]>(
-		dataPlanets ? dataPlanets?.results : []
-	);
-
-	const allClimates = Array.from(
-		new Set(dataPlanets?.results.map((planet) => planet.climate))
-	);
-
-	useEffect(() => {
-		if (dataPlanets) {
-			handleTotalItems(dataPlanets.count);
-		}
-		if (dataPlanets?.results && dataPlanets?.results.length === 0) {
-			handlePrevPage();
-		}
-	}, [dataPlanets]);
-
-	useEffect(() => {
-		if (dataPlanets) {
-			let result = dataPlanets.results;
-
-			if (searchQuery) {
-				result = result.filter((char) =>
-					char.name.toLowerCase().includes(searchQuery.toLowerCase())
-				);
-			}
-
-			if (climateFilter !== "all") {
-				result = result.filter((item) => item.climate === climateFilter);
-			}
-
-			setFilteredPlanets(result);
-		}
-	}, [searchQuery, climateFilter, dataPlanets]);
+		handleGoToPage,
+		handleNextPage,
+		setClimateFilter,
+		handlePrevPage,
+	} = usePlanet();
 
 	return (
 		<Container>

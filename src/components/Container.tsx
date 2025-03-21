@@ -8,9 +8,9 @@ interface ContainerProps {
 
 export const Container = ({ children }: ContainerProps) => {
 	return (
-		<main className="w-full h-screen">
+		<main className="w-full h-screen scrollbar overflow-y-auto">
 			<Header />
-			<section className="py-4 px-8 w-full h-[90%]">{children}</section>
+			<section className="py-4 px-8 w-full h-[85%]">{children}</section>
 			<MobileNav />
 		</main>
 	);
