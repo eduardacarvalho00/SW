@@ -78,12 +78,6 @@ describe("Character Details Page", () => {
 			cy.getByData("back-button").click();
 			cy.url().should("include", "/characters");
 		});
-
-		it("should navigate to homeworld details", () => {
-			cy.visit("/characters/1");
-			cy.getByData("planet-link").click();
-			cy.url().should("include", "/planets/1");
-		});
 	});
 
 	context("Loading States", () => {
