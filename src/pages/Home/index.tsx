@@ -27,14 +27,14 @@ export const Home = () => {
 		</div>
 	) : (
 		<Container>
-			<div className="space-y-6 h-vh md:h-full justify-center flex flex-col">
-				<p className="font-medium text-xl">
+			<div className="space-y-6 h-vh 2xl:h-full justify-center flex flex-col">
+				<p data-test="welcome-home" className="font-medium text-xl">
 					Welcome to the Star Wars Explorer. Discover characters and planets
 					from the Star Wars universe.
 				</p>
 
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-					<Card>
+					<Card data-test="characters-card">
 						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 							<CardTitle className="text-sm font-medium">Characters</CardTitle>
 							<Users className="h-4 w-4 text-[#94a3b8]" />
@@ -52,7 +52,7 @@ export const Home = () => {
 						</CardFooter>
 					</Card>
 
-					<Card>
+					<Card data-test="planets-card">
 						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 							<CardTitle className="text-sm font-medium">Planets</CardTitle>
 							<Globe className="h-4 w-4 text-[#94a3b8]" />
@@ -68,7 +68,7 @@ export const Home = () => {
 						</CardFooter>
 					</Card>
 
-					<Card>
+					<Card data-test="favorites-card">
 						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 							<CardTitle className="text-sm font-medium">Favorites</CardTitle>
 							<Heart className="h-4 w-4 text-[#94a3b8]" />
@@ -88,7 +88,10 @@ export const Home = () => {
 					</Card>
 				</div>
 
-				<div className="rounded-lg border-[1px] border-[#27272a] bg-card p-6">
+				<div
+					data-test="about-section"
+					className="rounded-lg border-[1px] border-[#27272a] bg-card p-6"
+				>
 					<div className="flex flex-col space-y-4">
 						<h2 className="text-xl font-bold">About Star Wars Explorer</h2>
 						<p className="text-[#94a3b8]">

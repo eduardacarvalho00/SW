@@ -43,6 +43,7 @@ export const Planet = () => {
 				<div className="flex flex-col gap-4 md:flex-row">
 					<div className="flex-1">
 						<Input
+							data-test="search-input"
 							placeholder="Search by name..."
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
@@ -50,7 +51,11 @@ export const Planet = () => {
 						/>
 					</div>
 					<div className="w-full md:w-48">
-						<Select value={climateFilter} onValueChange={setClimateFilter}>
+						<Select
+							data-test="climate-filter"
+							value={climateFilter}
+							onValueChange={setClimateFilter}
+						>
 							<SelectTrigger>
 								<SelectValue placeholder="Filter by gender" />
 							</SelectTrigger>
@@ -78,11 +83,19 @@ export const Planet = () => {
 								const idplanet = url.match(/\/(\d+)\/$/);
 
 								return (
-									<Card key={planet.name} className="overflow-hidden">
+									<Card
+										data-test="planet-card"
+										key={planet.name}
+										className="overflow-hidden"
+									>
 										<CardContent className="p-4 gap-2 flex flex-col">
 											<div className="flex items-center justify-between">
 												<h2 className="text-xl font-bold">{planet.name}</h2>
-												<FavoriteButton type="planets" item={planet} />
+												<FavoriteButton
+													data-test={`favorite-button-${planet.name}`}
+													type="planets"
+													item={planet}
+												/>
 											</div>
 
 											<div className="flex gap-1.5">
@@ -92,6 +105,7 @@ export const Planet = () => {
 										</CardContent>
 										<CardFooter className="p-4 pt-0">
 											<CardLink
+												data-test={`details-link-${planet.name}`}
 												href={`/planets${idplanet && idplanet[0]}`}
 												text="View Details"
 											/>
@@ -102,8 +116,11 @@ export const Planet = () => {
 						</div>
 					</div>
 				) : (
-					<div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8">
-						<h2 className="text-xl font-semibold">No characters found</h2>
+					<div
+						data-test="empty-state"
+						className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8"
+					>
+						<h2 className="text-xl font-semibold">No planets found</h2>
 						<p>Try adjusting your search or filter criteria</p>
 					</div>
 				)}

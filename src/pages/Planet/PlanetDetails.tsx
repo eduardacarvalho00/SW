@@ -69,7 +69,7 @@ export const PlanetDetails = () => {
 	if (!planet) {
 		return (
 			<Container>
-				<div className="container pt-20 pb-16">
+				<div data-test="not-found" className="container pt-20 pb-16">
 					<div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8">
 						<h2 className="text-xl font-semibold">Planet not found</h2>
 						<p className="text-[#94a3b8]">
@@ -89,7 +89,7 @@ export const PlanetDetails = () => {
 			<div className="space-y-6 h-vh md:h-full">
 				<div className="flex items-center gap-4">
 					<Link to="/planets">
-						<Button variant="outline" size="icon">
+						<Button variant="outline" size="icon" data-test="back-button">
 							<ArrowLeft className="h-4 w-4" />
 						</Button>
 					</Link>
@@ -99,7 +99,7 @@ export const PlanetDetails = () => {
 				</div>
 
 				<div className="space-x-6 flex flex-col md:flex-row gap-1.5">
-					<Card className="w-full md:w-[50%]">
+					<Card className="w-full md:w-[50%]" data-test="planet-details-card">
 						<CardHeader>
 							<CardTitle>Planet Details</CardTitle>
 							<CardDescription>Information about {planet.name}</CardDescription>
@@ -146,7 +146,10 @@ export const PlanetDetails = () => {
 
 							<div>
 								<h3 className="font-semibold">Films</h3>
-								<div className="flex flex-wrap gap-2 mt-2">
+								<div
+									className="flex flex-wrap gap-2 mt-2"
+									data-test="films-section"
+								>
 									{isLoadingFilms && <Loading />}
 									{filmsData &&
 										filmsData.map((film) => (
@@ -195,6 +198,7 @@ export const PlanetDetails = () => {
 										const idCharacter = url.match(/\/(\d+)\/$/);
 										return (
 											<div
+												data-test="residents-section"
 												key={resident.name}
 												className="flex items-center justify-between"
 											>

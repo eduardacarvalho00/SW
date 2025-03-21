@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardFooter, CardLink } from "@/components/ui/Card";
-import { FavoriteButton } from "@/components/FavoriteButton";
+import { FavoriteButton } from "@components/FavoriteButton";
 import { useFavorite } from "@hooks/useFavorite";
 import { Container } from "@components/Container";
 import { Link } from "react-router-dom";

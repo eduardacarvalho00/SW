@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { twMerge } from "@utils/twMerge";
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 import { useFavorite } from "@hooks/useFavorite";
 import { CharacterResponse } from "@/interface/character";
 import { PlanetResponse } from "@/interface/planet";
@@ -62,6 +62,7 @@ export function FavoriteButton({ item, type }: FavoriteButtonProps) {
 
 	return (
 		<Button
+			data-testid="favorite-button"
 			variant="ghost"
 			size="icon"
 			onClick={handleToggleFavorite}
@@ -115,6 +116,7 @@ export function FavoriteButton({ item, type }: FavoriteButtonProps) {
 						className="relative z-10"
 					>
 						<Heart
+							data-testid="heart-icon"
 							className={twMerge(
 								"h-5 w-5 transition-colors",
 								favorite ? "fill-current" : ""

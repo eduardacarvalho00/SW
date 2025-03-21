@@ -37,7 +37,7 @@ export const CharacterDetails = () => {
 	if (!character) {
 		return (
 			<Container>
-				<div className="container pt-20 pb-16">
+				<div data-test="not-found" className="container pt-20 pb-16">
 					<div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8">
 						<h2 className="text-xl font-semibold">Character not found</h2>
 						<p className="text-[#94a3b8]">
@@ -57,7 +57,7 @@ export const CharacterDetails = () => {
 			<div className="space-y-6 h-vh md:h-full">
 				<div className="flex items-center gap-4">
 					<Link to="/characters">
-						<Button variant="outline" size="icon">
+						<Button variant="outline" size="icon" data-test="back-button">
 							<ArrowLeft className="h-4 w-4" />
 						</Button>
 					</Link>
@@ -69,7 +69,10 @@ export const CharacterDetails = () => {
 				</div>
 
 				<div className="space-x-6 flex flex-col md:flex-row gap-1.5">
-					<Card className="w-full md:w-[50%]">
+					<Card
+						data-test="character-details-card"
+						className="w-full md:w-[50%]"
+					>
 						<CardHeader>
 							<CardTitle>Character Details</CardTitle>
 							<CardDescription>
@@ -110,7 +113,10 @@ export const CharacterDetails = () => {
 
 							<div>
 								<h3 className="font-semibold">Films</h3>
-								<div className="flex flex-wrap gap-2 mt-2">
+								<div
+									data-test="films-section"
+									className="flex flex-wrap gap-2 mt-2"
+								>
 									{isLoadingFilms && <Loading />}
 									{filmsData &&
 										filmsData.map((film) => (
@@ -127,7 +133,10 @@ export const CharacterDetails = () => {
 					</Card>
 
 					{(isLoadingHomeWorld || homeworld) && (
-						<Card className="w-full md:w-[50%] flex flex-col justify-between">
+						<Card
+							data-test="homeworld-card"
+							className="w-full md:w-[50%] flex flex-col justify-between"
+						>
 							<div>
 								<CardHeader>
 									<CardTitle className="flex items-center gap-2">

@@ -82,6 +82,7 @@ interface CardLinkProps {
 }
 const CardLink = ({ href, text }: CardLinkProps) => (
 	<Link
+		data-test="planet-link"
 		to={href}
 		className="flex justify-center hover:opacity-[0.8] rounded-md p-2 cursor-pointer text-[#0a0a0a] w-full bg-white"
 	>

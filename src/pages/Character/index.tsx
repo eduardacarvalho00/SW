@@ -48,10 +48,15 @@ export const Character = () => {
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
 							className="w-full"
+							data-test="search-input"
 						/>
 					</div>
 					<div className="w-full md:w-48">
-						<Select value={genderFilter} onValueChange={setGenderFilter}>
+						<Select
+							data-test="gender-filter"
+							value={genderFilter}
+							onValueChange={setGenderFilter}
+						>
 							<SelectTrigger>
 								<SelectValue placeholder="Filter by gender" />
 							</SelectTrigger>
@@ -79,11 +84,19 @@ export const Character = () => {
 								const idCharacter = url.match(/\/(\d+)\/$/);
 
 								return (
-									<Card key={character.name} className="overflow-hidden">
+									<Card
+										key={character.name}
+										className="overflow-hidden"
+										data-test="character-card"
+									>
 										<CardContent className="p-4 gap-2 flex flex-col">
 											<div className="flex items-center justify-between">
 												<h2 className="text-xl font-bold">{character.name}</h2>
-												<FavoriteButton type="characters" item={character} />
+												<FavoriteButton
+													data-test={`favorite-button-${character.name}`}
+													type="characters"
+													item={character}
+												/>
 											</div>
 											<div className="flex gap-1.5">
 												<p className="text-sm">Gender:</p>
@@ -102,6 +115,7 @@ export const Character = () => {
 											<CardLink
 												href={`/characters${idCharacter && idCharacter[0]}`}
 												text="View Details"
+												data-test={`details-link-${character.name}`}
 											/>
 										</CardFooter>
 									</Card>
@@ -110,7 +124,10 @@ export const Character = () => {
 						</div>
 					</div>
 				) : (
-					<div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8">
+					<div
+						data-test="empty-state"
+						className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8"
+					>
 						<h2 className="text-xl font-semibold">No characters found</h2>
 						<p>Try adjusting your search or filter criteria</p>
 					</div>

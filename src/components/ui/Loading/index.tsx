@@ -4,6 +4,7 @@ export function Loading() {
 	return (
 		<div
 			data-testid="loading"
+			data-test="loading"
 			className="loading-content relative z-10 text-center h-fit"
 		>
 			<div className="spinner mb-4" />

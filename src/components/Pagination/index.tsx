@@ -39,21 +39,21 @@ export const Pagination = ({
 				variant="outline"
 				size="icon"
 				onClick={handlePrevPage}
+				data-test="pagination-prev"
 				disabled={isFirstPage || isFetching}
 			>
 				&lt;
 			</Button>
-
 			<PaginationNumbers
 				currentPage={page}
 				totalPages={totalPages}
 				onPageChange={handleGoToPage}
 			/>
-
 			<Button
 				variant="outline"
 				size="icon"
 				onClick={handleNextPage}
+				data-test="pagination-next"
 				disabled={totalItemsIsLessEqualThan0 || isFetching}
 			>
 				&gt;

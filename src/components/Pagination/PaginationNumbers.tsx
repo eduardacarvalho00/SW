@@ -51,6 +51,7 @@ export const PaginationNumbers = ({
 		<div className="flex space-x-1">
 			{getPageNumbers().map((pageNum, index) => (
 				<button
+					data-test="pagination-input"
 					key={index}
 					type="button"
 					className={`px-3 py-2 h-9 rounded-lg transition-colors cursor-pointer
