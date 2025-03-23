@@ -1,5 +1,11 @@
 # Star Wars Explorer
 
+## Objetivo:
+Desenvolver uma página que exiba todos os personagens e os planetas dos filmes
+de Star Wars. A página deve incluir um filtro que permita aos usuários buscar
+personagens e os planetas pelo nome e permita navegar entre eles. Utilize a SWAPI
+para obter os dados correspondentes.
+
 ## 👩‍💻 Tecnologias:
 - Rect.js
 - Vite
