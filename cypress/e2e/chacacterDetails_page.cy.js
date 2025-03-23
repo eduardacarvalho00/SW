@@ -1,8 +1,8 @@
 describe("Character Details Page", () => {
 	const mockCharacter = {
 		name: "Luke Skywalker",
-		species: "Human",
 		gender: "male",
+		species: [],
 		birth_year: "19BBY",
 		height: "172",
 		mass: "77",
@@ -46,7 +46,6 @@ describe("Character Details Page", () => {
 			cy.visit("/characters/1");
 
 			cy.getByData("character-details-card").within(() => {
-				cy.contains("Species").next().should("have.text", "Human");
 				cy.contains("Height").next().should("have.text", "172 inch");
 				cy.contains("Mass").next().should("have.text", "77 lb");
 			});

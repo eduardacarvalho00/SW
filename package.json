@@ -13,8 +13,7 @@
 		"coverage": "vitest run --coverage",
 		"cy:open": "cypress open",
 		"testcy": "cypress run",
-		"test:ci": "cypress run --browser chrome --headless",
-		"test:open": "cypress open"
+		"test:ci": "cypress run --browser chrome --headless"
 	},
 	"dependencies": {
 		"@loadable/component": "^5.16.4",
