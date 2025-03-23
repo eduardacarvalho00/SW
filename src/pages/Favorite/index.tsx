@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { Card, CardContent, CardFooter, CardLink } from "@/components/ui/Card";
+import {
+	Card,
+	CardContent,
+	CardFooter,
+	CardHeader,
+	CardLink,
+	CardTitle,
+} from "@/components/ui/Card";
 import { FavoriteButton } from "@components/FavoriteButton";
 import { useFavorite } from "@hooks/useFavorite";
 import { Container } from "@components/Container";
@@ -21,6 +28,7 @@ export default function Favorite() {
 
 	const isCaracterTab = activeTab === "characters";
 	const isPlanetTab = activeTab === "planets";
+	const isSpecieTab = activeTab === "species";
 	return (
 		<Container>
 			<div className="space-y-6 h-vh md:h-full">
@@ -45,6 +53,9 @@ export default function Favorite() {
 						</SelectItem>
 						<SelectItem key="planets" value="planets">
 							Planets
+						</SelectItem>
+						<SelectItem key="species" value="species">
+							Species
 						</SelectItem>
 					</SelectContent>
 				</Select>
@@ -154,6 +165,81 @@ export default function Favorite() {
 								<Button asChild className="mt-4">
 									<Link to="/planets">Browse Planets</Link>
 								</Button>
+							</div>
+						)}
+					</div>
+				)}
+				{isSpecieTab && (
+					<div>
+						{getFavorites("species") && getFavorites("species").length > 0 ? (
+							<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+								{getFavorites("species")
+									.reverse()
+									.map((specie) => {
+										return (
+											<Card
+												className="w-full mt-2"
+												data-test="specie-details-card"
+											>
+												<CardHeader>
+													<CardTitle>{specie.name}</CardTitle>
+												</CardHeader>
+												<CardContent className="grid gap-4">
+													<div className="grid grid-cols-2 gap-4">
+														<div>
+															<h3 className="font-semibold">Average height</h3>
+															<p className="text-[#94a3b8]">
+																{specie.average_height} inch
+															</p>
+														</div>
+														<div>
+															<h3 className="font-semibold">Classification</h3>
+															<p className="text-[#94a3b8]">
+																{specie.classification}
+															</p>
+														</div>
+														<div>
+															<h3 className="font-semibold">Designtation</h3>
+															<p className="text-[#94a3b8]">
+																{specie.designation}
+															</p>
+														</div>
+														<div>
+															<h3 className="font-semibold">Eye colors</h3>
+															<p className="text-[#94a3b8]">
+																{specie.eye_colors}
+															</p>
+														</div>
+														<div>
+															<h3 className="font-semibold">Hair colors</h3>
+															<p className="text-[#94a3b8]">
+																{specie.hair_colors}
+															</p>
+														</div>
+														<div>
+															<h3 className="font-semibold">Language</h3>
+															<p className="text-[#94a3b8]">
+																{specie.language}
+															</p>
+														</div>
+														<div>
+															<h3 className="font-semibold">Skin colorsr</h3>
+															<p className="text-[#94a3b8]">
+																{specie.skin_colors}
+															</p>
+														</div>
+													</div>
+												</CardContent>
+											</Card>
+										);
+									})}
+							</div>
+						) : (
+							<div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8">
+								<h2 className="text-xl font-semibold">No favorite Species</h2>
+								<p className="text-muted-foreground">
+									You haven't added any Species to your favorites yet.
+								</p>
 							</div>
 						)}
 					</div>

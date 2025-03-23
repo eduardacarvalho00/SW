@@ -37,6 +37,8 @@ describe("Character Component", () => {
 			homeworld: undefined,
 			isLoadingHomeWorld: false,
 			homeworldId: undefined,
+			isLoadingSpecies: false,
+			speciesData: undefined,
 		});
 
 		render(
@@ -89,6 +91,8 @@ describe("Character Component", () => {
 			homeworld: undefined,
 			isLoadingHomeWorld: false,
 			homeworldId: undefined,
+			isLoadingSpecies: false,
+			speciesData: undefined,
 		});
 
 		render(
@@ -128,6 +132,8 @@ describe("Character Component", () => {
 			homeworld: undefined,
 			isLoadingHomeWorld: false,
 			homeworldId: undefined,
+			isLoadingSpecies: false,
+			speciesData: undefined,
 		});
 
 		render(
@@ -162,6 +168,8 @@ describe("Character Component", () => {
 			homeworld: undefined,
 			isLoadingHomeWorld: false,
 			homeworldId: undefined,
+			isLoadingSpecies: false,
+			speciesData: undefined,
 		});
 
 		render(

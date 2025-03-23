@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+export type TypeFavorite = "characters" | "planets" | "species";
+
 export const useFavorite = () => {
-	function getFavorites(type: "characters" | "planets"): any[] {
+	function getFavorites(type: TypeFavorite): any[] {
 		if (typeof window === "undefined") return [];
 
 		const favorites = localStorage.getItem(`favorites-${type}`);
 		return favorites ? JSON.parse(favorites) : [];
 	}
 
-	function toggleFavorite(type: "characters" | "planets", item: any): boolean {
+	function toggleFavorite(type: TypeFavorite, item: any): boolean {
 		if (typeof window === "undefined") return false;
 
 		const favorites = getFavorites(type);
@@ -24,7 +26,7 @@ export const useFavorite = () => {
 		return !isFavorite;
 	}
 
-	function isFavorite(type: "characters" | "planets", name: string): boolean {
+	function isFavorite(type: TypeFavorite, name: string): boolean {
 		if (typeof window === "undefined") return false;
 
 		const favorites = getFavorites(type);

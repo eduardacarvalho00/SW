@@ -1,4 +1,4 @@
-import { CHARACTERS, FILMS, PLANETS } from "@constants/entitiesKey";
+import { CHARACTERS, FILMS, PLANETS, SPECIE } from "@constants/entitiesKey";
 import { axiosInstance } from "./axiosInstace";
 import {
 	AllCharactersResponse,
@@ -7,6 +7,7 @@ import {
 import { PaginationProps } from "@/interface/paginations";
 import { AllPlanetsResponse, PlanetResponse } from "@/interface/planet";
 import { FilmReponse } from "@/interface/film";
+import { SpecieResponse } from "@/interface/specie";
 
 export async function allCharacters(params: PaginationProps) {
 	const { data } = await axiosInstance.get<AllCharactersResponse>(CHARACTERS, {
@@ -40,6 +41,12 @@ export async function planet(id: string) {
 
 export async function film(id: string) {
 	const { data } = await axiosInstance.get<FilmReponse>(`${FILMS}/${id}`);
+
+	return data;
+}
+
+export async function specie(id: string) {
+	const { data } = await axiosInstance.get<SpecieResponse>(`${SPECIE}/${id}`);
 
 	return data;
 }

@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { twMerge } from "@utils/twMerge";
 import { Button } from "../ui/Button";
-import { useFavorite } from "@hooks/useFavorite";
+import { TypeFavorite, useFavorite } from "@hooks/useFavorite";
 import { CharacterResponse } from "@/interface/character";
 import { PlanetResponse } from "@/interface/planet";
 import { motion, AnimatePresence } from "framer-motion";
+import { SpecieResponse } from "@/interface/specie";
 
 interface FavoriteButtonProps {
-	type: "characters" | "planets";
-	item: CharacterResponse | PlanetResponse;
+	type: TypeFavorite;
+	item: CharacterResponse | PlanetResponse | SpecieResponse;
 }
 
 const HeartParticle = () => {

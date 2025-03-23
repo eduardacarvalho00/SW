@@ -55,6 +55,11 @@ export const usePlanet = () => {
 		}
 	}, [searchQuery, climateFilter, dataPlanets]);
 
+	useEffect(() => {
+		setSearchQuery("");
+		setClimateFilter("all");
+	}, [page]);
+
 	return {
 		allClimates,
 		searchQuery,

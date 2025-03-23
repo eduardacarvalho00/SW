@@ -6,6 +6,7 @@ import { CharacterDetails } from "@pages/Character/CharacterDetails";
 import { Planet } from "@pages/Planet";
 import { PlanetDetails } from "@pages/Planet/PlanetDetails";
 import Favorite from "@pages/Favorite";
+import { Specie } from "@pages/Specie";
 const NotFound = loadable(() => import("@pages/NotFound"));
 
 export const MainRoutes = () => {
@@ -17,6 +18,7 @@ export const MainRoutes = () => {
 			<Route path="/planets" element={<Planet />} />
 			<Route path="/planets/:planetId" element={<PlanetDetails />} />
 			<Route path="/favorites" element={<Favorite />} />
+			<Route path="/species/:specieId" element={<Specie />} />
 			<Route path="/*" element={<NotFound />} />
 		</Routes>
 	);

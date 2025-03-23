@@ -5,7 +5,7 @@ import { CharacterResponse } from "@/interface/character";
 import { useParams } from "react-router-dom";
 import { useGetPlanet } from "@queries/planet";
 import { useQuery } from "@tanstack/react-query";
-import { film } from "@api/starwars";
+import { film, specie } from "@api/starwars";
 import { FILMS } from "@constants/entitiesKey";
 
 export const useCharacter = () => {
@@ -66,6 +66,7 @@ export const useCharacter = () => {
 	const { characterId } = useParams();
 	const { data: character, isLoading: isLoadingDetailsCharacter } =
 		useGetCharacter(String(characterId));
+
 	const splitHomeworld = character && character.homeworld.split("/");
 	const homeworldId =
 		splitHomeworld && splitHomeworld[splitHomeworld.length - 2];
@@ -91,7 +92,27 @@ export const useCharacter = () => {
 		enabled: filmsIds !== undefined && filmsIds.length > 0,
 	});
 
+	const speciesIds = character?.species.map((url) => {
+		const match = url.match(/(\d+)\/$/);
+		return match ? parseInt(match[1]) : null;
+	});
+
+	const { data: speciesData, isLoading: isLoadingSpecies } = useQuery({
+		queryKey: [FILMS, { speciesIds }],
+		queryFn: async () => {
+			if (speciesIds) {
+				const results = await Promise.all(
+					speciesIds.map((id) => specie(String(id)))
+				);
+				return results;
+			}
+		},
+		enabled: speciesIds !== undefined && speciesIds.length > 0,
+	});
+
 	return {
+		isLoadingSpecies,
+		speciesData,
 		searchQuery,
 		setSearchQuery,
 		genderFilter,

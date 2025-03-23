@@ -1,6 +1,6 @@
-import { ArrowLeft, Globe } from "lucide-react";
+import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
 import { Container } from "@components/Container";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@components/ui/Button";
 import { FavoriteButton } from "@components/FavoriteButton";
 import {
@@ -24,7 +24,11 @@ export const CharacterDetails = () => {
 		homeworld,
 		isLoadingHomeWorld,
 		homeworldId,
+		isLoadingSpecies,
+		speciesData,
 	} = useCharacter();
+
+	const navigate = useNavigate();
 
 	if (isLoadingDetailsCharacter) {
 		return (
@@ -83,7 +87,42 @@ export const CharacterDetails = () => {
 							<div className="grid grid-cols-2 gap-4">
 								<div>
 									<h3 className="font-semibold">Species</h3>
-									<p className="text-[#94a3b8]">{character.species}</p>
+									{speciesData && speciesData[0] ? (
+										<div
+											data-test="films-section"
+											className="flex flex-wrap gap-2 mt-2"
+										>
+											{isLoadingSpecies && <Loading />}
+											{speciesData &&
+												speciesData.map((specie) => {
+													const url = specie.url;
+													const isSpecie = url.match(/\/(\d+)\/$/);
+													return (
+														<div
+															key={specie.name}
+															className="flex items-center justify-between w-full"
+														>
+															<span
+																key={specie.name}
+																className="flex flex-row items-center gap-2 justify-between rounded-full bg-gray-500 px-3 py-1 text-xs"
+															>
+																{specie.name}
+																<ExternalLink
+																	className="cursor-pointer"
+																	onClick={() =>
+																		navigate(
+																			`/species${isSpecie && isSpecie[0]}`
+																		)
+																	}
+																/>
+															</span>
+														</div>
+													);
+												})}
+										</div>
+									) : (
+										<p className="text-[#94a3b8]">Unknow</p>
+									)}
 								</div>
 								<div>
 									<h3 className="font-semibold">Gender</h3>
