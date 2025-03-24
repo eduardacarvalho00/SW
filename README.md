@@ -43,5 +43,5 @@ Agora você pode acessar o network do seu navegador > [`localhost:5173`](http://
 ![image](https://github.com/user-attachments/assets/5207f2d5-e93c-4afc-9ff4-cef39334df35)
 
 # Vercel
-Link do deploy da vercel: [`Star Wars Explorer`](https://sw-explorer.vercel.app/)
+Link do deploy na vercel: [`Star Wars Explorer`](https://sw-explorer.vercel.app/)
 
